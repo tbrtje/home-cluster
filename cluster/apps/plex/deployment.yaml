@@ -68,7 +68,7 @@ spec:
           allowPrivilegeEscalation: true
           capabilities: {}
           privileged: true
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
           runAsNonRoot: true
         startupProbe:
           failureThreshold: 60
