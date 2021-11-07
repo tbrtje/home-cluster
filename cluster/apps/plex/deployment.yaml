@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: plex
     app.kubernetes.io/name: plex
-  name: plex
+  name: plex-main
   namespace: ix-plex
 spec:
   progressDeadlineSeconds: 600
