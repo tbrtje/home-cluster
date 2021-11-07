@@ -13,9 +13,20 @@ data:
       time_zone: ${TIME_ZONE}
       unit_system: metric
       currency: EUR
-      external_url: https://homea.${SECRET_URL}
+      external_url: https://home.${SECRET_URL}
       internal_url: ${HOMEASSISTANT_URL}
-    default_config:
+    dhcp:
+    api:
+    frontend:
+    history:
+    logbook:
+    recorder:
+    ssdp:
+    zeroconf:
+    person:
+    my:
+    mobile_app:
+    config:
     # Text to speech
     tts:
       - platform: google_translate
