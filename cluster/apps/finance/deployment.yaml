@@ -27,7 +27,7 @@ spec:
         - name: APP_KEY
           value: ${FIREFLY_APP_KEY}
         - name: DB_HOST
-          value: "db-haproxy.pxc"
+          value: "db-haproxy.db"
         - name: DB_PORT
           value: "3306"
         - name: DB_CONNECTION
