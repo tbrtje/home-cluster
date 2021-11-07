@@ -66,7 +66,6 @@ spec:
             memory: 50Mi
         securityContext:
           allowPrivilegeEscalation: true
-          capabilities: {}
           privileged: true
           readOnlyRootFilesystem: false
           runAsNonRoot: false
@@ -90,16 +89,6 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext:
-        fsGroup: 568
-        fsGroupChangePolicy: OnRootMismatch
-        runAsGroup: 568
-        runAsUser: 568
-        supplementalGroups:
-        - 568
-        - 5
-        - 20
-        - 24
       serviceAccountName: default
       terminationGracePeriodSeconds: 10
       volumes:
