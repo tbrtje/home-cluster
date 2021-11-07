@@ -38,7 +38,7 @@ spec:
           value: ${FIREFLY_DB_USER}
         - name: DB_PASSWORD
           value: ${FIREFLY_DB_PASSWORD}
-        image: fireflyiii/core:beta
+        image: fireflyiii/core:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
