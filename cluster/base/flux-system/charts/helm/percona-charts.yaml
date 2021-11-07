@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: percona-charts
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://percona.github.io/percona-helm-charts
+  timeout: 3m
