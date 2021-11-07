@@ -1,3 +1,4 @@
+# TODO: remove this, as it is no longer really needed.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
