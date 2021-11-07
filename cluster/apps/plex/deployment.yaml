@@ -69,7 +69,7 @@ spec:
           capabilities: {}
           privileged: true
           readOnlyRootFilesystem: false
-          runAsNonRoot: true
+          runAsNonRoot: false
         startupProbe:
           failureThreshold: 60
           initialDelaySeconds: 3
