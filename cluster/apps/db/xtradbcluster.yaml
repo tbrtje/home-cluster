@@ -1,0 +1,63 @@
+apiVersion: pxc.percona.com/v1alpha1
+kind: PerconaXtraDBCluster
+metadata:
+  name: db
+  namespace: db
+  finalizers:
+    - delete-pxc-pods-in-order
+spec:
+  crVersion: 1.9.0
+  secretsName: my-cluster-secrets
+  allowUnsafeConfigurations: true
+#  pause: false
+  updateStrategy: SmartUpdate
+  upgradeOptions:
+    versionServiceEndpoint: https://check.percona.com
+    apply: 8.0-recommended
+    schedule: "0 4 * * *"
+  pxc:
+    size: 1
+    image: percona/percona-xtradb-cluster:8.0
+    autoRecovery: true
+    resources:
+      requests:
+        memory: 1G
+        cpu: 600m
+    affinity:
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+    podDisruptionBudget:
+      maxUnavailable: 1
+    volumeSpec:
+      persistentVolumeClaim:
+        storageClassName: openebs-zfspv-default-retain
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 6G
+    gracePeriod: 600
+  haproxy:
+    enabled: true
+    size: 1
+    image: percona/percona-xtradb-cluster-operator:1.9.0-haproxy
+    resources:
+      requests:
+        memory: 300m
+        cpu: 600m
+    affinity:
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+    podDisruptionBudget:
+      maxUnavailable: 1
+    gracePeriod: 30
+  proxysql:
+    enabled: false
+  logcollector:
+    enabled: true
+    image: percona/percona-xtradb-cluster-operator:1.9.0-logcollector
+    resources:
+      requests:
+        memory: 100M
+        cpu: 200m
+  backup:
+    image: percona/percona-xtradb-cluster-operator:1.9.0-pxc8.0-backup
+    pitr:
+      enabled: false
