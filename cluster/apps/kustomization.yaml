@@ -4,4 +4,7 @@ resources:
   - default
   - kube-system
   - networking
+  - db
+  - iot
+  - finance
   - system-upgrade
