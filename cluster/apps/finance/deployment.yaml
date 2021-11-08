@@ -23,6 +23,7 @@ spec:
         app.kubernetes.io/name: firefly
     spec:
       containers:
+      # TODO: somehow fix the reverse proxy issue, as graphs are not showing
       - env:
         - name: APP_KEY
           value: ${FIREFLY_APP_KEY}
