@@ -101,7 +101,6 @@ data:
       service: http://overseerr.ix-plex:80
     - hostname: hajimari.${SECRET_DOMAIN}
       service: http://hajimari.default:3000
-      httpHostHeader: hajimari.${SECRET_DOMAIN}
     - hostname: truenas.${SECRET_DOMAIN}
       service: https://192.168.178.101:443
       originRequest:
