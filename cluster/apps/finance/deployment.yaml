@@ -39,6 +39,10 @@ spec:
           value: ${FIREFLY_DB_USER}
         - name: DB_PASSWORD
           value: ${FIREFLY_DB_PASSWORD}
+        - name: TRUSTED_PROXIES
+          value: "*"
+        - name: APP_URL
+          value: "https://firefly.${SECRET_URL}"
         image: fireflyiii/core:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
