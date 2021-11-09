@@ -44,7 +44,7 @@ spec:
         - name: TRUSTED_PROXIES
           value: "**"
         - name: APP_URL
-          value: "https://firefly.${SECRET_URL}"
+          value: "https://firefly.${SECRET_DOMAIN}"
         image: fireflyiii/core:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
