@@ -11,7 +11,7 @@ data:
       "bank_code": "20041111",
       "bank_url": "https://banking-ni1.s-fints-pt-ni.de/fints30",
       "bank_2fa": "921",
-      "firefly_url": "localhost:8080/",
+      "firefly_url": "localhost:8080",
       "firefly_access_token": "${FIREFLY_TOKEN}"
     }
   comdirect.json: |
@@ -21,6 +21,6 @@ data:
       "bank_code": "20041111",
       "bank_url": "https://fints.comdirect.de/fints",
       "bank_2fa": "902",
-      "firefly_url": "localhost:8080/",
+      "firefly_url": "localhost:8080",
       "firefly_access_token": "${FIREFLY_TOKEN}"
     }
