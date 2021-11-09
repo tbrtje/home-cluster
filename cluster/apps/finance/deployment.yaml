@@ -84,11 +84,7 @@ spec:
       - name: fints-importer
         image: benkl/firefly-iii-fints-importer:latest
         imagePullPolicy: IfNotPresent
-        command:
-          - "php"
-          - "-S"
-          - "0.0.0.0:8081"
-          - "/app/index.php"
+        command: ["php", "-S", "0.0.0.0:8081", "/app/index.php"]
         ports:
           - containerPort: 8081
             name: fints
