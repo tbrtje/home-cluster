@@ -23,28 +23,29 @@ spec:
         app.kubernetes.io/name: firefly
     spec:
       containers:
-      - env:
-        - name: APP_KEY
-          value: ${FIREFLY_APP_KEY}
-        - name: DB_HOST
-          value: "db-haproxy.db"
-        - name: DB_PORT
-          value: "3306"
-        - name: DB_CONNECTION
-          value: "mysql"
-        - name: DB_DATABASE
-          value: "firefly"
-        - name: DB_USERNAME
-          value: ${FIREFLY_DB_USER}
-        - name: DB_PASSWORD
-          value: ${FIREFLY_DB_PASSWORD}
+      - name: firefly-firefly
+        env:
+          - name: APP_KEY
+            value: ${FIREFLY_APP_KEY}
+          - name: DB_HOST
+            value: "db-haproxy.db"
+          - name: DB_PORT
+            value: "3306"
+          - name: DB_CONNECTION
+            value: "mysql"
+          - name: DB_DATABASE
+            value: "firefly"
+          - name: DB_USERNAME
+            value: ${FIREFLY_DB_USER}
+          - name: DB_PASSWORD
+            value: ${FIREFLY_DB_PASSWORD}
           # You don't know how many hours I wasted finding out that this flag. This weirdness makes the scheme
           # for requested resources https instead of http.
           # You cannot specify ip addresses in cidr notation here, which is why this is required...
-        - name: TRUSTED_PROXIES
-          value: "**"
-        - name: APP_URL
-          value: "https://firefly.${SECRET_DOMAIN}"
+          - name: TRUSTED_PROXIES
+            value: "**"
+          - name: APP_URL
+            value: "https://firefly.${SECRET_DOMAIN}"
         image: fireflyiii/core:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -55,7 +56,6 @@ spec:
           tcpSocket:
             port: 8080
           timeoutSeconds: 2
-        name: firefly-firefly
         ports:
         - containerPort: 8080
           name: main
