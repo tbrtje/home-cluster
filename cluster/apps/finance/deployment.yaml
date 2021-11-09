@@ -23,7 +23,6 @@ spec:
         app.kubernetes.io/name: firefly
     spec:
       containers:
-      # TODO: somehow fix the reverse proxy issue, as graphs are not showing
       - env:
         - name: APP_KEY
           value: ${FIREFLY_APP_KEY}
@@ -39,6 +38,9 @@ spec:
           value: ${FIREFLY_DB_USER}
         - name: DB_PASSWORD
           value: ${FIREFLY_DB_PASSWORD}
+          # You don't know how many hours I wasted finding out that this flag. This weirdness makes the scheme
+          # for requested resources https instead of http.
+          # You cannot specify ip addresses in cidr notation here, which is why this is required...
         - name: TRUSTED_PROXIES
           value: "**"
         - name: APP_URL
@@ -79,12 +81,33 @@ spec:
         volumeMounts:
         - mountPath: /var/www/html/storage/upload
           name: upload
+      - name: fints-importer
+        image: benkl/firefly-iii-fints-importer:latest
+        imagePullPolicy: IfNotPresent
+        command:
+          - "php"
+          - "-S"
+          - "0.0.0.0:8081"
+          - "/app/index.php"
+        ports:
+          - containerPort: 8081
+            name: fints
+        volumeMounts:
+          - mountPath: /app/configurations
+            name: config
       restartPolicy: Always
       volumes:
       - name: upload
         persistentVolumeClaim:
           claimName: firefly-upload
-
+      - name: config
+        configMap:
+          - name: config-fints
+            items:
+              - key: comdirect.json
+                path: comdirect.json
+              - key: lzo.json
+                path: lzo.json
 ---
 apiVersion: v1
 kind: Service
@@ -96,5 +119,8 @@ spec:
     - port: 80
       name: main
       targetPort: main
+    - port: 81
+      name: fints
+      targetPort: fints
   selector:
     app.kubernetes.io/name: firefly

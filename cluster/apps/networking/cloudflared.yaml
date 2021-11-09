@@ -97,7 +97,9 @@ data:
       service: http://homeassistant.iot:8123
     - hostname: firefly.${SECRET_DOMAIN}
       service: http://firefly.finance:80
-    - hostname: overseerr.broetje.online
+    - hostname: fints.${SECRET_DOMAIN}
+      service: http://firefly.finance:81
+    - hostname: overseerr.${SECRET_DOMAIN}
       service: http://overseerr.ix-plex:80
     - hostname: hajimari.${SECRET_DOMAIN}
       service: http://hajimari.default:3000

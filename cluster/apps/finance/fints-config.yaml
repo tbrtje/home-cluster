@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: finance
+  name: config-fints
+data:
+  lzo.json: |
+    {
+      "bank_username": "${FIREFLY_LZO_USER}",
+      "bank_password": "${FIREFLY_LZO_PW}",
+      "bank_code": "20041111",
+      "bank_url": "https://banking-ni1.s-fints-pt-ni.de/fints30",
+      "bank_2fa": "921",
+      "firefly_url": "localhost:8080/",
+      "firefly_access_token": "${FIREFLY_TOKEN}"
+    }
+  comdirect.json: |
+    {
+      "bank_username": "${FIREFLY_COMDIRECT_USER}",
+      "bank_password": "${FIREFLY_COMDIRECT_PW}",
+      "bank_code": "20041111",
+      "bank_url": "https://fints.comdirect.de/fints",
+      "bank_2fa": "902",
+      "firefly_url": "localhost:8080/",
+      "firefly_access_token": "${FIREFLY_TOKEN}"
+    }
