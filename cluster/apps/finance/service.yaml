@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: firefly
+  namespace: finance
+spec:
+  ports:
+    - port: 80
+      name: main
+      targetPort: main
+    - port: 81
+      name: fints
+      targetPort: fints
+  selector:
+    app.kubernetes.io/name: firefly
