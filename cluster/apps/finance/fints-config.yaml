@@ -8,7 +8,7 @@ data:
     {
       "bank_username": "${FIREFLY_LZO_USER}",
       "bank_password": "${FIREFLY_LZO_PW}",
-      "bank_code": "20041111",
+      "bank_code": "28050100",
       "bank_url": "https://banking-ni1.s-fints-pt-ni.de/fints30",
       "bank_2fa": "921",
       "firefly_url": "localhost:8080",
