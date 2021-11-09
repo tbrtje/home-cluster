@@ -40,7 +40,7 @@ spec:
         - name: DB_PASSWORD
           value: ${FIREFLY_DB_PASSWORD}
         - name: TRUSTED_PROXIES
-          value: "*"
+          value: "**"
         - name: APP_URL
           value: "https://firefly.${SECRET_URL}"
         image: fireflyiii/core:latest
