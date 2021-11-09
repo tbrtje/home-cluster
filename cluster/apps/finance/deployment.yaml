@@ -100,9 +100,9 @@ spec:
           claimName: firefly-upload
       - name: config
         configMap:
-          - name: config-fints
-            items:
-              - key: comdirect.json
-                path: comdirect.json
-              - key: lzo.json
-                path: lzo.json
+          name: config-fints
+          items:
+            - key: comdirect.json
+              path: comdirect.json
+            - key: lzo.json
+              path: lzo.json
