@@ -5,3 +5,4 @@ resources:
   - fints-config.yaml
   - pvc.yaml
   - deployment.yaml
+  - service.yaml
