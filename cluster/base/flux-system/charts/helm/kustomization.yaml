@@ -23,3 +23,4 @@ resources:
   - traefik-charts.yaml
   - weaveworks-kured-charts.yaml
   - percona-charts.yaml
+  - nextcloud-charts.yaml
