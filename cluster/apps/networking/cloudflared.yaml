@@ -105,6 +105,8 @@ data:
       service: http://hajimari.default:3000
     - hostname: cloud.${SECRET_DOMAIN}
       service: http://nextcloud.nextcloud:80
+    - hostname: photos.${SECRET_DOMAIN}
+      service: http://photoprism.photoprism:2342
     - hostname: truenas.${SECRET_DOMAIN}
       service: https://192.168.178.101:443
       originRequest:
