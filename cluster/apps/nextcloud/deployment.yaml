@@ -83,9 +83,9 @@ spec:
           <?php
           $CONFIG = array (
             ‘trusted_proxies’ =>
-                      array (
-                      0 => ‘172.0.0.0/8’,
-                      )
+              array (
+                0 => ‘172.0.0.0/8’
+              )
           );
       # For example, to use S3 as primary storage
       # ref: https://docs.nextcloud.com/server/13/admin_manual/configuration_files/primary_storage.html#simple-storage-service-s3
