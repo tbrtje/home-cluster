@@ -1,0 +1,19 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: brillenladen
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: syncthing-brillenladen
+  namespace: brillenladen
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2G
+  storageClassName: openebs-zfspv-default-retain
+---
+a
