@@ -44,7 +44,7 @@ spec:
       PHOTOPRISM_CACHE_PATH: "/photoprism/cache"
       PHOTOPRISM_DETECT_NSFW: "true"
       PHOTOPRISM_UPLOAD_NSFW: "true"
-      PHOTOPRISM_SITE_URL: "photos.broetje.online"
+      PHOTOPRISM_SITE_URL: "https://photos.broetje.online"
       PHOTOPRISM_DATABASE_DRIVER: "mysql"
       PHOTOPRISM_DATABASE_SERVER: "db-haproxy.db:3306"
       PHOTOPRISM_DATABASE_NAME: "photoprismfamily"
