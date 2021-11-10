@@ -165,7 +165,8 @@ spec:
 
     redis:
       enabled: true
-      usePassword: false
+      usePassword: true
+      password: Chinoo0x
 
     ## Cronjob to execute Nextcloud background tasks
     ## ref: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html#webcron
