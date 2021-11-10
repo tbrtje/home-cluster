@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nextcloud
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: photoprism-config
+  namespace: photoprism
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10G
+  storageClassName: openebs-zfspv-default-retain
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism
+  namespace: photoprism
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://photoprism.github.io/helm/
+      chart: photoprism
+      version: 2.9.1
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud-charts
+        namespace: flux-system
+  values:
+    image:
+      # -- image repository
+      repository: photoprism/photoprism
+      # -- image tag
+      tag: "20210523"
+      # -- image pull policy
+      pullPolicy: IfNotPresent
+
+    # -- environment variables. See [image docs](https://docs.photoprism.org/getting-started/config-options/) for more details.
+    # @default -- See below
+    env:
+      # -- Set the container timezone
+      TZ: Europe/Berlin
+      # -- Photoprism storage path
+      PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+      # -- Photoprism originals path
+      PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
+      # -- Initial admin password. **BE SURE TO CHANGE THIS!**
+      PHOTOPRISM_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PW}"
+      # -- Disable authentication / password protection
+      PHOTOPRISM_PUBLIC: "false"
+      PHOTOPRISM_CACHE_PATH: "/photoprism/cache"
+      PHOTOPRISM_DETECT_NSFW: "true"
+      PHOTOPRISM_UPLOAD_NSFW: "true"
+      PHOTOPRISM_SITE_URL: "photos.broetje.online"
+      PHOTOPRISM_DATABASE_DRIVER: "mysql"
+      PHOTOPRISM_DATABASE_SERVER: "db-haproxy.db:3306"
+      PHOTOPRISM_DATABASE_NAME: "photoprismfamily"
+      PHOTOPRISM_DATABASE_USER: "root"
+      PHOTOPRISM_DATABASE_PASSWORD: "${PERCONA_DB_ROOT}"
+
+    # -- Configures service settings for the chart.
+    # @default -- See values.yaml
+    service:
+      main:
+        ports:
+          http:
+            port: 2342
+
+    ingress:
+      # -- Enable and configure ingress settings for the chart under this key.
+      # @default -- See values.yaml
+      main:
+        enabled: false
+
+    # -- Configure persistence settings for the chart under this key.
+    # @default -- See values.yaml
+    persistence:
+      config:
+        enabled: true
+        mountPath: /photoprism/storage
+        type: hostPath
+        hostPath: /mnt/bigboy/Media/Photos/storage
+      cache:
+        enabled: true
+        mountPath: /photoprism/cache
+        type: hostPath
+        hostPath: /mnt/SSD/tmp/photoprism
+
+      originals:
+        enabled: true
+        mountPath: "/photoprism/originals"
+        type: hostPath
+        hostPath: /mnt/bigboy/Media/Photos/originals
