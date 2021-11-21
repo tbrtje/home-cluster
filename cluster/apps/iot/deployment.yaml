@@ -29,8 +29,7 @@ spec:
                               "ips": [ "10.0.1.99/24" ],
                               "mac": "76:df:5c:a1:3f:5b"
                             }]'
-
-
+        configmap.reloader.stakater.com/reload: "homeassistant-config"
       labels:
         app.kubernetes.io/instance: homeassistant
         app.kubernetes.io/name: home-assistant
