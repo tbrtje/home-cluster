@@ -136,8 +136,11 @@ items:
           containers:
             - name: firefly-csv
               env:
-                - name: FIREFLY_III_CLIENT_ID
-                  value: ${FIREFLY_CLIENT}
+                - name: FIREFLY_III_ACCESS_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      key: FIREFLY_III_ACCESS_TOKEN
+                      name: firefly-token
                 - name: FIREFLY_III_URL
                   value: http://firefly.finance:80
                 - name: VANITY_URL
