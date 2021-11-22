@@ -1,108 +1,174 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app.kubernetes.io/instance: firefly
-    app.kubernetes.io/name: firefly
-  name: firefly
-  namespace: finance
-spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
-  revisionHistoryLimit: 2
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: firefly
-      app.kubernetes.io/name: firefly
-  strategy:
-    type: Recreate
-  template:
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: apps/v1
+    kind: Deployment
     metadata:
       labels:
         app.kubernetes.io/instance: firefly
         app.kubernetes.io/name: firefly
+      name: firefly
+      namespace: finance
     spec:
-      containers:
-      - name: firefly-firefly
-        env:
-          - name: APP_KEY
-            value: ${FIREFLY_APP_KEY}
-          - name: DB_HOST
-            value: "db-haproxy.db"
-          - name: DB_PORT
-            value: "3306"
-          - name: DB_CONNECTION
-            value: "mysql"
-          - name: DB_DATABASE
-            value: "firefly"
-          - name: DB_USERNAME
-            value: ${FIREFLY_DB_USER}
-          - name: DB_PASSWORD
-            value: ${FIREFLY_DB_PASSWORD}
-          # You don't know how many hours I wasted finding out that this flag. This weirdness makes the scheme
-          # for requested resources https instead of http.
-          # You cannot specify ip addresses in cidr notation here, which is why this is required...
-          - name: TRUSTED_PROXIES
-            value: "**"
-          - name: APP_URL
-            value: "https://firefly.${SECRET_DOMAIN}"
-        image: fireflyiii/core:latest
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 5
-          initialDelaySeconds: 2
-          periodSeconds: 10
-          successThreshold: 1
-          tcpSocket:
-            port: 8080
-          timeoutSeconds: 2
-        ports:
-        - containerPort: 8080
-          name: main
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 5
-          initialDelaySeconds: 2
-          periodSeconds: 10
-          successThreshold: 1
-          tcpSocket:
-            port: 8080
-          timeoutSeconds: 2
-        startupProbe:
-          failureThreshold: 60
-          initialDelaySeconds: 3
-          periodSeconds: 5
-          successThreshold: 1
-          tcpSocket:
-            port: 8080
-          timeoutSeconds: 2
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /var/www/html/storage/upload
-          name: upload
-      - name: fints-importer
-        image: benkl/firefly-iii-fints-importer:latest
-        imagePullPolicy: IfNotPresent
-        command: ["php"]
-        args: ["-S", "0.0.0.0:8081", "/app/index.php"]
-        ports:
-          - containerPort: 8081
-            name: fints
-            protocol: TCP
-        volumeMounts:
-          - mountPath: /app/configurations
-            name: config
-      restartPolicy: Always
-      volumes:
-      - name: upload
-        persistentVolumeClaim:
-          claimName: firefly-upload
-      - name: config
-        configMap:
-          name: config-fints
-          items:
-            - key: comdirect.json
-              path: comdirect.json
-            - key: lzo.json
-              path: lzo.json
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 2
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: firefly
+          app.kubernetes.io/name: firefly
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/instance: firefly
+            app.kubernetes.io/name: firefly
+        spec:
+          containers:
+            - name: firefly-firefly
+              env:
+                - name: APP_KEY
+                  value: ${FIREFLY_APP_KEY}
+                - name: DB_HOST
+                  value: "db-haproxy.db"
+                - name: DB_PORT
+                  value: "3306"
+                - name: DB_CONNECTION
+                  value: "mysql"
+                - name: DB_DATABASE
+                  value: "firefly"
+                - name: DB_USERNAME
+                  value: ${FIREFLY_DB_USER}
+                - name: DB_PASSWORD
+                  value: ${FIREFLY_DB_PASSWORD}
+                # You don't know how many hours I wasted finding out that this flag. This weirdness makes the scheme
+                # for requested resources https instead of http.
+                # You cannot specify ip addresses in cidr notation here, which is why this is required...
+                - name: TRUSTED_PROXIES
+                  value: "**"
+                - name: APP_URL
+                  value: "https://firefly.${SECRET_DOMAIN}"
+              image: fireflyiii/core:latest
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                failureThreshold: 5
+                initialDelaySeconds: 2
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 2
+              ports:
+                - containerPort: 8080
+                  name: main
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 5
+                initialDelaySeconds: 2
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 2
+              startupProbe:
+                failureThreshold: 60
+                initialDelaySeconds: 3
+                periodSeconds: 5
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 2
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              volumeMounts:
+                - mountPath: /var/www/html/storage/upload
+                  name: upload
+            - name: fints-importer
+              image: benkl/firefly-iii-fints-importer:latest
+              imagePullPolicy: IfNotPresent
+              command: [ "php" ]
+              args: [ "-S", "0.0.0.0:8081", "/app/index.php" ]
+              ports:
+                - containerPort: 8081
+                  name: fints
+                  protocol: TCP
+              volumeMounts:
+                - mountPath: /app/configurations
+                  name: config
+          restartPolicy: Always
+          volumes:
+            - name: upload
+              persistentVolumeClaim:
+                claimName: firefly-upload
+            - name: config
+              configMap:
+                name: config-fints
+                items:
+                  - key: comdirect.json
+                    path: comdirect.json
+                  - key: lzo.json
+                    path: lzo.json
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: firefly-csv
+        app.kubernetes.io/name: firefly-csv
+      name: firefly-csv
+      namespace: finance
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 1
+      revisionHistoryLimit: 2
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: firefly-csv
+          app.kubernetes.io/name: firefly-csv
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/instance: firefly-csv
+            app.kubernetes.io/name: firefly-csv
+        spec:
+          containers:
+            - name: firefly-csv
+              env:
+                - name: FIREFLY_III_ACCESS_TOKEN
+                  value: ${FIREFLY_TOKEN}
+                - name: FIREFLY_III_URL
+                  value: http://firefly.finance:80
+                - name: VANITY_URL
+                  value: https://firefly.${SECRET_DOMAIN}
+              image: fireflyiii/csv-importer:latest
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                failureThreshold: 5
+                initialDelaySeconds: 2
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 2
+              ports:
+                - containerPort: 8080
+                  name: main
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 5
+                initialDelaySeconds: 2
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+                timeoutSeconds: 2
+              startupProbe:
+                failureThreshold: 60
+                initialDelaySeconds: 3
+                periodSeconds: 5
+                successThreshold: 1
+                tcpSocket:
+                  port: 8080
+          restartPolicy: Always
