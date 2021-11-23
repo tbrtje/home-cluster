@@ -43,6 +43,7 @@ items:
               volumeMounts:
                 - mountPath: /home/projector-user
                   name: data
+                  subPath: intellij
           volumes:
             - name: data
               persistentVolumeClaim:
