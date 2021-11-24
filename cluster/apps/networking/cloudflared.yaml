@@ -112,6 +112,8 @@ items:
           service: http://photoprism.photoprism:2342
         - hostname: intellij.${SECRET_DOMAIN}
           service: http://intellij.dev:80
+        - hostname: intellij.${SECRET_DOMAIN}
+          service: http://jetbrains-hub.dev:80
         - hostname: truenas.${SECRET_DOMAIN}
           service: https://192.168.178.101:443
           originRequest:
