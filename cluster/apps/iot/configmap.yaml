@@ -21,7 +21,7 @@ data:
           host: 192.168.178.135
           port: 2010
           username: "Admin"
-          password: ${HM_PW}
+          password: "${HM_PW}"
     dhcp:
     api:
     frontend:
