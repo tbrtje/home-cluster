@@ -15,6 +15,13 @@ data:
       currency: EUR
       external_url: https://home.${SECRET_URL}
       internal_url: ${HOMEASSISTANT_URL}
+    homematic:
+      interfaces:
+        ip:
+          host: 192.168.178.135
+          port: 2010
+          username: "Admin"
+          password: ${HM_PW}
     dhcp:
     api:
     frontend:
