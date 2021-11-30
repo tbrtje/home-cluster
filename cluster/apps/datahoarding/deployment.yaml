@@ -38,6 +38,7 @@ items:
                       name: data
                     - mountPath: /config
                       name: config
+              restartPolicy: OnFailure
               volumes:
                 - name: data
                   hostPath:
