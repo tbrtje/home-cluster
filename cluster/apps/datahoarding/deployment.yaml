@@ -22,6 +22,8 @@ items:
                         containers:
                             - name: instaloader
                               image: ghcr.io/tbrtje/instaloader:main
+                              securityContext:
+                                allowPrivilegeEscalation: false
                               volumeMounts:
                                 - mountPath: /data
                                   name: data
@@ -35,4 +37,7 @@ items:
                             - name: config
                               configMap:
                                 name: private-config
+                        securityContext:
+                          runAsUser: 1000
+                          fsGroup: 1000
         schedule: "*/15 * * * *"
