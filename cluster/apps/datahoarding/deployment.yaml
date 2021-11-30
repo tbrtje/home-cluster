@@ -15,7 +15,8 @@ items:
         --login=${IL_PRIV_USER}
         --session-file=/config/thiesbroetje.txt
         -s
-      targets.txt: ${IL_PRIV_TARGETS}
+      targets.txt: |
+        ${IL_PRIV_TARGETS}
   - kind: CronJob
     apiVersion: batch/v1
     metadata:
