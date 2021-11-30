@@ -1,0 +1,28 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+    name: private-config
+    namespace: download
+data:
+    args.txt: ENC[AES256_GCM,data:xaQ5DSAfZ++5HgVPyONXwGPkNkEknUcuce4p8zQaW5TnQblIUdex0nzuj2cKvEMMscg5hc/Og3TEqNHpiDA/qQ==,iv:rEH+NdLEUxa308Ysf5ZkXs6kphaOrvk2upuFo08segw=,tag:QjsZCy4ALavESAPq0obviQ==,type:str]
+    targets.txt: ENC[AES256_GCM,data:ES3bvuw0e+I0gPlS/8NQ5azKvzeFy3Wsl46K9fMPPrMMkDeMpdwHJFZ0+u0xIb7CbSgBVbWgVptydQFh3T2wVkauCgTfi3unShDu7MEwNjDe2bAEylR0amKjjWyKRytLEeHZMRtRyMMR5YRCYSga0nAJzRJxUXyzeF2RDJNONHsOFmOC0kdjQ9t/l2vnowAd8dhQFOh6omFOU2R/CXnvTdVegOK+SWbLcKrM/8KBlkTJoiPCt1blMwTZWpNRgLddEHFYlgTPqKo5a4n5vNY5lE0Fwmcka8dXCt5Edov478/daOZd51HIMBsDFhp7wcxKG8D8DB6c1D1IQNkBoZI9S21q56bbvmROKzVZRFtAUhK/55SPtmiTwOTs6G7rOkmtPRrCNczoiu9yZ+Q5znBIwaI7uc1KDiNuClGtLyaXzR4IxrEKLwTWeDMZkwyI1mOSKux5IyTr5JUGvP8/RfMMGSbr6Cm5W9qkeoeRVpuRTZnPyZYRLTHCdgXXfKk=,iv:3xm2e79+pZI//ibgRIQYD8WgSAPV9aFh0hh4ynn74gM=,tag:1hGn1osHmL9mRFkoXY3Waw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age16j27una9wuv7fwaasztl9u8c4u7tduhuz3mrqhl3n6lkz4svzd7svjpkru
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBJOTRxdkJuQ01tM1JnRzNs
+            a29YRTQyZTgxRVBidm5pRGhGQWFubzBnTXlZCk9zN0dHazB4bmFxME5kUWFWUWR2
+            bFFIRXk3ajhrdGZVT2lRY0I2VWY1Z3MKLS0tIHU2RHFJMGNXT094NWhneHpDOWEz
+            aFNzU3FEOXJUYlpDRHcxekc1RHYvUnMK9Fc9Cc+zyXn/FZrFgg8i9p21byxhQBeT
+            B9KLChYkkhyrzdmPw7TnRGPDZ+H83GaKLlR9CdSzw25VuTSPr0JwZw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-11-30T20:05:48Z"
+    mac: ENC[AES256_GCM,data:uCBecTff0qQGNFmfkS4chr78Ru97NCY+uKM6eg90rmnOiEngpqqXHQv01iGE3OZch0lcntI4jbcXWr8oapJh9ECJDT9Yl/DBwctu6A/UDbk/7hGgA9FQ5/zs4x0r777WdRWi9ynpGj0dBz1K65ERPBL6kmhIOzuQ1FCOUBR0qK0=,iv:CmGhoiwYilsrFfc0J2HQcHbnrZw5p4yAJNzKYxwB50o=,tag:gdV5JuOETu7J1E6AIfWUWA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
