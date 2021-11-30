@@ -40,4 +40,4 @@ items:
               securityContext:
                 runAsUser: 1000
                 fsGroup: 1000
-      schedule: "*/15 * * * *"
+      schedule: "*/5 * * * *"
