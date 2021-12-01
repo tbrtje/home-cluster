@@ -33,7 +33,7 @@ items:
               volumes:
                 - name: data
                   hostPath:
-                    path: /mnt/bigboy/home/thies/help/instagram
+                    path: /mnt/bigboy/home/thies/scrape/instagram
                 - name: config
                   configMap:
                     name: private-config
