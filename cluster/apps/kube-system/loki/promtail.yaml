@@ -17,4 +17,5 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    lokiAddress: http://loki:3100
+    config:
+      lokiAddress: http://loki:3100
