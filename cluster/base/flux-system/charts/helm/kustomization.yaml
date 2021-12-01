@@ -26,3 +26,4 @@ resources:
   - nextcloud-charts.yaml
   - raspberrymatic.yaml
   - loki-charts.yaml
+  - true-charts.yaml

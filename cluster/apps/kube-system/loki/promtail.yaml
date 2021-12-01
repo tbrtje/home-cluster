@@ -8,18 +8,13 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://grafana.github.io/loki/charts
-      chart: loki-stack
-      version: 2.5.0
+      # renovate: registryUrl=https://truecharts.org/
+      chart: promtail
+      version: 1.0.4
       sourceRef:
         kind: HelmRepository
-        name: loki-charts
+        name: truecharts
         namespace: flux-system
       interval: 5m
   values:
-    loki:
-      enabled: true
-    promtail:
-      enabled: true
-    grafana:
-      enabled: true
+    lokiAddress: http://loki:3100
