@@ -25,3 +25,4 @@ resources:
   - percona-charts.yaml
   - nextcloud-charts.yaml
   - raspberrymatic.yaml
+  - loki-charts.yaml
