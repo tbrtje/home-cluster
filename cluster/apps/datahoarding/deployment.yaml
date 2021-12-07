@@ -1,43 +1,36 @@
-apiVersion: v1
-kind: List
-items:
-  - kind: Namespace
-    apiVersion: v1
-    metadata:
-      name: download
-  - kind: CronJob
-    apiVersion: batch/v1
-    metadata:
-      name: instaloader
-      namespace: download
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: instaloader
+  namespace: download
+spec:
+  jobTemplate:
     spec:
-      jobTemplate:
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/instance: instaloader
+            app.kubernetes.io/name: instaloader
         spec:
-          template:
-            metadata:
-              labels:
-                app.kubernetes.io/instance: instaloader
-                app.kubernetes.io/name: instaloader
-            spec:
-              containers:
-                - name: instaloader
-                  image: ghcr.io/tbrtje/instaloader:main
-                  securityContext:
-                    allowPrivilegeEscalation: false
-                  volumeMounts:
-                    - mountPath: /data
-                      name: data
-                    - mountPath: /config
-                      name: config
-              restartPolicy: OnFailure
-              volumes:
-                - name: data
-                  hostPath:
-                    path: /mnt/bigboy/scrape/instagram
-                - name: config
-                  configMap:
-                    name: private-config
+          containers:
+            - name: instaloader
+              image: ghcr.io/tbrtje/instaloader:main
               securityContext:
-                runAsUser: 1000
-                fsGroup: 1000
-      schedule: "0 */4 * * *"
+                allowPrivilegeEscalation: false
+              volumeMounts:
+                - mountPath: /data
+                  name: data
+                - mountPath: /config
+                  name: config
+          restartPolicy: OnFailure
+          volumes:
+            - name: data
+              hostPath:
+                path: /mnt/bigboy/scrape/instagram
+            - name: config
+              configMap:
+                name: private-config
+          securityContext:
+            runAsUser: 1000
+            fsGroup: 1000
+  schedule: "0 */4 * * *"
