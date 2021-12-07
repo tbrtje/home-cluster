@@ -13,3 +13,4 @@ resources:
   - nextcloud.yaml
   - photoprism.yaml
   - plex.yaml
+  - private.yaml
