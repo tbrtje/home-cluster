@@ -2,12 +2,12 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: syncthing-brillenladen
-  namespace: brillenladen
+  name: nextcloud-config
+  namespace: nextcloud
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 2G
+      storage: 10G
   storageClassName: openebs-zfspv-default-retain
