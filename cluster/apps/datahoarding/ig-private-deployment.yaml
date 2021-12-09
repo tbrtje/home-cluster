@@ -33,4 +33,4 @@ spec:
           securityContext:
             runAsUser: 1000
             fsGroup: 1000
-  schedule: "0 */4 * * *"
+  schedule: "0 1,13,17 * * *"
