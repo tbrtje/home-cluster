@@ -87,12 +87,16 @@ spec:
           name: device-0
         - mountPath: /data
           name: list-0
+        - mountPath: /transcode
+          name: transcode
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       serviceAccountName: default
       terminationGracePeriodSeconds: 10
       volumes:
+      - name: transcode
+        emptyDir: {}
       - name: config
         persistentVolumeClaim:
           claimName: plex-config
