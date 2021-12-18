@@ -20,6 +20,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://jens-maus.github.io/RaspberryMatic
       chart: raspberrymatic
       version: 3.61.5
       sourceRef:
