@@ -35,7 +35,7 @@ spec:
           value: Europe/Berlin
         - name: UMASK
           value: "002"
-        image: lscr.io/linuxserver/plex:latest
+        image: lscr.io/linuxserver/plex:version-1.25.2.5319-c43dc0277
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
