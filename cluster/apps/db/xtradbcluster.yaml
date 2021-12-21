@@ -38,7 +38,7 @@ spec:
   haproxy:
     enabled: true
     size: 1
-    image: percona/percona-xtradb-cluster-operator:1.9.0-haproxy
+    image: percona/percona-xtradb-cluster-operator:1.10.0-haproxy
     resources:
       requests:
         memory: 300m
@@ -52,12 +52,12 @@ spec:
     enabled: false
   logcollector:
     enabled: true
-    image: percona/percona-xtradb-cluster-operator:1.9.0-logcollector
+    image: percona/percona-xtradb-cluster-operator:1.10.0-logcollector
     resources:
       requests:
         memory: 100M
         cpu: 200m
   backup:
-    image: percona/percona-xtradb-cluster-operator:1.9.0-pxc8.0-backup
+    image: percona/percona-xtradb-cluster-operator:1.10.0-pxc8.0-backup
     pitr:
       enabled: false
