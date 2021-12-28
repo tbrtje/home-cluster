@@ -22,7 +22,7 @@ spec:
     spec:
       # renovate: registryUrl=https://jens-maus.github.io/RaspberryMatic
       chart: raspberrymatic
-      version: 3.61.5
+      version: 3.61.7
       sourceRef:
         kind: HelmRepository
         name: raspberrymatic
