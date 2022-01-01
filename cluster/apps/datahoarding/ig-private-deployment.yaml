@@ -12,6 +12,8 @@ spec:
             app.kubernetes.io/instance: instaloader
             app.kubernetes.io/name: instaloader
         spec:
+          nodeSelector:
+            kubernetes.io/hostname: "ix-truenas"
           containers:
             - name: instaloader
               image: ghcr.io/tbrtje/instaloader:main

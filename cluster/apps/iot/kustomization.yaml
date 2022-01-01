@@ -5,4 +5,4 @@ resources:
   - macvlan-definition.yaml
   - configmap.yaml
   - deployment.yaml
-  - raspberrymatic.yaml
+#  - raspberrymatic.yaml

@@ -27,6 +27,8 @@ spec:
         app.kubernetes.io/instance: intellij
         app.kubernetes.io/name: intellij
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: "ix-truenas"
       containers:
         - name: intellij
           image: registry.jetbrains.team/p/prj/containers/projector-idea-u
