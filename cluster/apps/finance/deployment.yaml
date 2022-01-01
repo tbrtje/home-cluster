@@ -25,6 +25,8 @@ items:
             app.kubernetes.io/instance: firefly
             app.kubernetes.io/name: firefly
         spec:
+          nodeSelector:
+            kubernetes.io/hostname: "ix-truenas"
           containers:
             - name: firefly-firefly
               env:

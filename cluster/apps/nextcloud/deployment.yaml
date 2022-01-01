@@ -148,8 +148,7 @@ spec:
 
     redis:
       enabled: true
-      usePassword: true
-      password: Chinoo0x
+      usePassword: false
 
     ## Cronjob to execute Nextcloud background tasks
     ## ref: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html#webcron
@@ -192,21 +191,21 @@ spec:
     ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
     ##
     livenessProbe:
-      enabled: false
+      enabled: true
       initialDelaySeconds: 10
       periodSeconds: 10
       timeoutSeconds: 5
       failureThreshold: 3
       successThreshold: 1
     readinessProbe:
-      enabled: false
+      enabled: true
       initialDelaySeconds: 10
       periodSeconds: 10
       timeoutSeconds: 5
       failureThreshold: 3
       successThreshold: 1
     startupProbe:
-      enabled: false
+      enabled: true
       initialDelaySeconds: 30
       periodSeconds: 10
       timeoutSeconds: 5
