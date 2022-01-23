@@ -11,6 +11,6 @@ resources:
   - plex
   - nextcloud
   - photoprism
-  - dev
+#  - dev
   - datahoarding
   - private
