@@ -48,7 +48,7 @@ spec:
           value: Europe/Berlin
         - name: UMASK
           value: "002"
-        image: homeassistant/home-assistant:2021.12
+        image: homeassistant/home-assistant:2022.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
