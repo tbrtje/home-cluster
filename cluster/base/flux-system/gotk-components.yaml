@@ -5482,7 +5482,6 @@ spec:
         name: data
       - emptyDir: {}
         name: tmp
----
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
