@@ -17,7 +17,7 @@ spec:
     schedule: "0 4 * * *"
   pxc:
     size: 1
-    image: percona/percona-xtradb-cluster:8.0.25
+    image: percona/percona-xtradb-cluster:8.0.26
     autoRecovery: true
     resources:
       requests:
