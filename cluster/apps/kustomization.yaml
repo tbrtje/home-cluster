@@ -7,7 +7,6 @@ resources:
   - db
   - iot
 #  - finance
-#  - system-upgrade
   - plex
   - nextcloud
   - photoprism
