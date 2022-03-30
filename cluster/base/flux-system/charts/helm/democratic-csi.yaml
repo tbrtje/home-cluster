@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: truecharts
+  name: democratic-csi
   namespace: flux-system
 spec:
   interval: 15m
-  url: https://truecharts.org/
+  url: https://democratic-csi.github.io/charts/
   timeout: 3m
