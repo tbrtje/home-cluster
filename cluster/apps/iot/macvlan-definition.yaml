@@ -10,7 +10,7 @@ spec:
         {
           "type": "macvlan",
           "capabilities": { "ips": true },
-          "master": "bond0",
+          "master": "br0",
           "mode": "bridge",
           "ipam": {
             "type": "dhcp"
