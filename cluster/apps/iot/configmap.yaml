@@ -34,6 +34,7 @@ data:
     my:
     mobile_app:
     config:
+    system_health:
     # Text to speech
     tts:
       - platform: google_translate
